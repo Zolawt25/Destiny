@@ -4,7 +4,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 const Header = () => {
   return (
     <div className="">
-      <div className="text-[#031F42] px-20 pt-32 pb-20">
+      <div className="text-main px-20 pt-32 pb-20">
         <p className="text-xl mb-1">About our classes</p>
         <h1 className="text-6xl font-bold">
           We providing the <br />
@@ -23,7 +23,7 @@ const Header = () => {
               specific needs.
             </p>
 
-            <a href="/" className="text-xs hover:text-[#5169F1] font-semibold">
+            <a href="/" className="text-xs hover:text-primary font-semibold">
               MEET THE TEAM
               <span className="border rounded-full pt-2 pb-3 px-2 ml-2">
                 <ArrowForwardIcon fontSize="small" />
@@ -31,7 +31,7 @@ const Header = () => {
             </a>
           </div>
           <div className="flex-1 flex flex-col items-center justify-center">
-            <p className="text-9xl font-bold text-[#031F42]">8</p>
+            <p className="text-9xl font-bold text-main">8</p>
             <p>Years of Experience</p>
           </div>
         </div>

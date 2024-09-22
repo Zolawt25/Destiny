@@ -30,7 +30,7 @@ const Navbar = () => {
           Home
         </a>
         <a
-          href="/blog"
+          href="/blogs"
           className="hover:text-[#657AF5] font-semibold text-gray-700 text-[15px]"
         >
           Blog
