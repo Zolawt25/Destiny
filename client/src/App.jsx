@@ -5,6 +5,10 @@ import HomePage from "./pages/HomePage";
 import Footer from "./components/Footer";
 import BlogPage from "./pages/BlogPage";
 import BlogDetailPage from "./pages/BlogDetailPage";
+import NewsAndEventsPage from "./pages/NewsAndEventsPage";
+import GalleryPage from "./pages/GalleryPage";
+import AboutUsPage from "./pages/AboutUsPage";
+import ContactUsPage from "./pages/ContactUsPage";
 const App = () => {
   return (
     <div>
@@ -13,6 +17,10 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/blogs" element={<BlogPage />} />
         <Route path="/blogs/:id" element={<BlogDetailPage />} />
+        <Route path="/news" element={<NewsAndEventsPage />} />
+        <Route path="/gallery" element={<GalleryPage />} />
+        <Route path="/about" element={<AboutUsPage />} />
+        <Route path="/contact" element={<ContactUsPage />} />
       </Routes>
       <Footer />
     </div>
