@@ -13,15 +13,18 @@ const App = () => {
   return (
     <div>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/blogs" element={<BlogPage />} />
-        <Route path="/blogs/:id" element={<BlogDetailPage />} />
-        <Route path="/news" element={<NewsAndEventsPage />} />
-        <Route path="/gallery" element={<GalleryPage />} />
-        <Route path="/about" element={<AboutUsPage />} />
-        <Route path="/contact" element={<ContactUsPage />} />
-      </Routes>
+      <div className="max-w-[1500px] mx-auto">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/blogs" element={<BlogPage />} />
+          <Route path="/blogs/:id" element={<BlogDetailPage />} />
+          <Route path="/news" element={<NewsAndEventsPage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/about" element={<AboutUsPage />} />
+          <Route path="/contact" element={<ContactUsPage />} />
+        </Routes>
+      </div>
+
       <Footer />
     </div>
   );

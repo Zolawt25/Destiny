@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const News = ({ events }) => {
   return (
-    <div className="px-20">
-      <div className="grid grid-cols-3 gap-7">
+    <div className="md:px-20 px-10">
+      <div className=" grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-7">
         {events.map((item, index) => {
           return (
             <Link
@@ -22,7 +22,7 @@ const News = ({ events }) => {
                   </p>
                 </div>
                 <div>
-                  <h4 className="text-2xl font-semibold text-main">
+                  <h4 className="sm:text-2xl text-xl font-semibold text-main">
                     {item.title}
                   </h4>
                 </div>

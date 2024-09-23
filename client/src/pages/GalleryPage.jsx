@@ -15,15 +15,17 @@ const GalleryPage = () => {
   ];
   return (
     <div>
-      <div className=" bg-[#F2F7FD] px-20 py-16">
+      <div className=" bg-[#f95f06b7] md:px-20 px-10 py-16">
         <div className="flex items-center gap-2 text-gray-500 text-sm mb-3">
           <HomeOutlined fontSize="small" /> <p>| Our Gallery</p>
         </div>
-        <h2 className="text-main text-6xl font-bold">Our Gallery</h2>
+        <h2 className="text-main sm:text-6xl text-4xl font-bold">
+          Our Gallery
+        </h2>
       </div>
       <div className="mt-20 mb-20">
         <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 4 }}>
-          <Masonry className=" px-20">
+          <Masonry className=" md:px-20 px-10">
             {imgs.map((item, index) => {
               return (
                 <img

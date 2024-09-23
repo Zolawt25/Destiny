@@ -10,18 +10,18 @@ const BlogDetailPage = () => {
       return item;
     }
   });
-  console.log(recentBlogs);
+
   return (
     <div>
-      <div className="flex items-center gap-2 text-gray-500 text-sm mb-5 bg-[#F2F7FD] px-20 py-5">
+      <div className="flex flex-wrap items-center gap-2 text-gray-900 text-sm mb-5 bg-[#f95f06b7] lg:px-20 px-10 py-5">
         <HomeOutlined fontSize="small" /> <p>| Blogs</p> <p>| {blog.title}</p>
       </div>
-      <div className=" px-20">
+      <div className="lg:px-20 px-10">
         <div className="mt-20">
           <p className="bg-[#EFE9FE] px-3 py-1 rounded-full text-sm inline-block mb-5">
             {blog.category}
           </p>
-          <h1 className="text-7xl font-semibold text-gray-950 mb-5">
+          <h1 className="md:text-7xl sm:text-5xl text-2xl font-semibold text-gray-950 mb-5">
             {blog.title}
           </h1>
           <div className="flex gap-3 text-gray-800 mb-14">
@@ -32,10 +32,10 @@ const BlogDetailPage = () => {
         <div className="w-full">
           <img src={blog.img} alt="" className="w-full rounded-xl" />
         </div>
-        <div className="mt-14 flex gap-20">
+        <div className="mt-14 flex flex-col md:flex-row gap-20">
           <div className="">
             <div className="mb-10">
-              <p className="text-lg text-main">{blog.description}</p>
+              <p className="sm:text-lg text-main">{blog.description}</p>
             </div>
             <div>
               <p className="text-3xl font-bold text-gray-900">2 Comments</p>
@@ -106,14 +106,14 @@ const BlogDetailPage = () => {
                       className="border shadow-[0_0_2px_1px_#1111_inset] rounded-lg w-full px-4 py-4"
                     ></textarea>
                   </div>
-                  <button className="px-16 rounded-lg shadow-md py-4 bg-primary text-white font-semibold mb-5">
+                  <button className="px-16 rounded-lg shadow-md py-4 bg-[#F96106] text-white font-semibold mb-5">
                     Submit
                   </button>
                 </form>
               </div>
             </div>
           </div>
-          <div className="w-[110rem] text-main sticky top-28">
+          <div className="md:w-[110rem] w-full text-main sticky top-28">
             <div className="">
               <p className="text-[22px] font-semibold">Recent Posts</p>
               <div>

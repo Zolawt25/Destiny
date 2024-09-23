@@ -3,14 +3,16 @@ import React from "react";
 const AboutUsPage = () => {
   return (
     <div>
-      <div className="py-20 text-center bg-[#F2F7FD]">
-        <h1 className="text-6xl font-bold text-main mb-2">About our classes</h1>
-        <p className="text-xl text-gray-600">
+      <div className="py-20 text-center bg-[#f95f06b7] px-4">
+        <h1 className="sm:text-6xl text-4xl font-bold text-main mb-2">
+          About our classes
+        </h1>
+        <p className="sm:text-xl text-lg text-gray-600">
           We providing the best quality online courses.
         </p>
       </div>
-      <div className="px-20 my-20">
-        <div className="flex gap-7 items-center mb-14">
+      <div className="lg:px-20 px-10 my-20">
+        <div className="flex flex-col md:flex-row gap-7 items-center mb-14">
           <div className="flex-[2]">
             <p className="text-2xl font-semibold text-main mb-2">
               WHAT MAKES US DIFFERENT?
@@ -36,7 +38,7 @@ const AboutUsPage = () => {
             />
           </div>
         </div>
-        <div className="flex gap-7 items-center mb-14 flex-row-reverse">
+        <div className="flex flex-col gap-7 items-center mb-14 md:flex-row-reverse">
           <div className="flex-[2]">
             <p className="text-2xl font-semibold text-main mb-2 uppercase">
               Our Vision Statement
@@ -57,7 +59,7 @@ const AboutUsPage = () => {
             />
           </div>
         </div>
-        <div className="flex gap-7 items-center mb-14">
+        <div className="flex flex-col md:flex-row gap-7 items-center mb-14">
           <div className="flex-[2]">
             <p className="text-2xl font-semibold text-main mb-2">
               Our Mission Statement
