@@ -13,7 +13,7 @@ const Navbar = () => {
     }
   };
   window.addEventListener("scroll", changBackground);
-  console.log(isOpen);
+
   return (
     <div
       className={`${
@@ -64,6 +64,14 @@ const Navbar = () => {
             News/Events
           </a>
           <a
+            href="/donations"
+            className={`hover:text-[#657AF5] font-semibold ${
+              navbarBgColor ? "text-gray-50" : "text-gray-700 text-[15px]"
+            }`}
+          >
+            Donations
+          </a>
+          <a
             href="/gallery"
             className={`hover:text-[#657AF5] font-semibold ${
               navbarBgColor ? "text-gray-50" : "text-gray-700 text-[15px]"
@@ -79,14 +87,7 @@ const Navbar = () => {
           >
             Community
           </a>
-          <a
-            href="/donations"
-            className={`hover:text-[#657AF5] font-semibold ${
-              navbarBgColor ? "text-gray-50" : "text-gray-700 text-[15px]"
-            }`}
-          >
-            Donations
-          </a>
+
           <a
             href="/about"
             className={`hover:text-[#657AF5] font-semibold ${

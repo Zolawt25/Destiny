@@ -9,6 +9,11 @@ import NewsAndEventsPage from "./pages/NewsAndEventsPage";
 import GalleryPage from "./pages/GalleryPage";
 import AboutUsPage from "./pages/AboutUsPage";
 import ContactUsPage from "./pages/ContactUsPage";
+import DonationPage from "./pages/DonationPage";
+import EventsDetailPage from "./pages/EventsDetailPage";
+import NewsDetailPage from "./pages/NewsDetailPage";
+import DonationsDetailPage from "./pages/DonationsDetailPage";
+import CommunityPage from "./pages/CommunityPage";
 const App = () => {
   return (
     <div>
@@ -18,7 +23,12 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/blogs" element={<BlogPage />} />
           <Route path="/blogs/:id" element={<BlogDetailPage />} />
+          <Route path="/events/:id" element={<EventsDetailPage />} />
+          <Route path="/news/:id" element={<NewsDetailPage />} />
+          <Route path="/donations/:id" element={<DonationsDetailPage />} />
           <Route path="/news" element={<NewsAndEventsPage />} />
+          <Route path="/community" element={<CommunityPage />} />
+          <Route path="/donations" element={<DonationPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/about" element={<AboutUsPage />} />
           <Route path="/contact" element={<ContactUsPage />} />

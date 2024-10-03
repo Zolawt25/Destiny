@@ -1,15 +1,68 @@
 import { HomeOutlined } from "@mui/icons-material";
-import React, { useState } from "react";
-import { blogs } from "../assets/blogs";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+import Loading from "../components/Loading";
 
 const BlogDetailPage = () => {
-  const [blog, setBlog] = useState(blogs[2]);
-  const recentBlogs = blogs.filter((item) => {
-    if (item.isNew === true) {
-      return item;
+  const [blog, setBlog] = useState({});
+  const [username, setUsername] = useState("");
+  const [text, setText] = useState("");
+  const [commentAdded, setCommentAdded] = useState(false);
+  const [recentBlogs, setRecentBlogs] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isRecentLoading, setIsRecentLoading] = useState(false);
+  const [isCommentLoading, setIsCommentLoading] = useState(false);
+  let date = new Date(blog.createdAt).toString().slice(0, 16);
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      const res = await axios.get(
+        `${import.meta.env.VITE_SERVER_URL}/blogs/${id}`
+      );
+      setBlog(res.data);
+      setIsLoading(false);
+    };
+    fetchData();
+  }, [commentAdded, id]);
+
+  useEffect(() => {
+    const fetchRecentBlogs = async () => {
+      setIsRecentLoading(true);
+      const res = await axios.get(
+        `${import.meta.env.VITE_SERVER_URL}/blogs/recent`
+      );
+      setRecentBlogs(res.data);
+      setIsRecentLoading(false);
+    };
+    fetchRecentBlogs();
+  }, [id]);
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios.put(`${import.meta.env.VITE_SERVER_URL}/blogs/${id}`, {
+        views: blog.views + 1,
+      });
+    };
+    if (blog.views) {
+      // Ensure blog data is loaded before trying to update views
+      fetchData();
     }
-  });
+  }, [id, blog.views]);
+  const addComment = async (e) => {
+    e.preventDefault();
+    setIsCommentLoading(true);
+    await axios.post(
+      `${import.meta.env.VITE_SERVER_URL}/blogs/${id}/comments`,
+      {
+        username,
+        text,
+      }
+    );
+    setCommentAdded(!commentAdded);
+    setIsCommentLoading(false);
+  };
 
   return (
     <div>
@@ -17,124 +70,138 @@ const BlogDetailPage = () => {
         <HomeOutlined fontSize="small" /> <p>| Blogs</p> <p>| {blog.title}</p>
       </div>
       <div className="lg:px-20 px-10">
-        <div className="mt-20">
-          <p className="bg-[#EFE9FE] px-3 py-1 rounded-full text-sm inline-block mb-5">
-            {blog.category}
-          </p>
-          <h1 className="md:text-7xl sm:text-5xl text-2xl font-semibold text-gray-950 mb-5">
-            {blog.title}
-          </h1>
-          <div className="flex gap-3 text-gray-800 mb-14">
-            <p className="border-r pr-3">{blog.createdAt}</p>
-            <p>2 Comments</p>
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <div>
+            <div className="mt-20">
+              <p className="bg-[#EFE9FE] px-3 py-1 rounded-full text-sm inline-block mb-5">
+                {blog.category}
+              </p>
+              <h1 className="md:text-7xl sm:text-5xl text-2xl font-semibold text-gray-950 mb-5">
+                {blog.title}
+              </h1>
+              <div className="flex gap-3 text-gray-800 mb-14">
+                <p className="border-r pr-3">{date}</p>
+                <p>{blog.comments?.length || 0} Comments</p>
+              </div>
+            </div>
+            <div className="w-full">
+              <img src={blog.img} alt="" className="w-full rounded-xl" />
+            </div>
           </div>
-        </div>
-        <div className="w-full">
-          <img src={blog.img} alt="" className="w-full rounded-xl" />
-        </div>
+        )}
+
         <div className="mt-14 flex flex-col md:flex-row gap-20">
-          <div className="">
-            <div className="mb-10">
-              <p className="sm:text-lg text-main">{blog.description}</p>
-            </div>
-            <div>
-              <p className="text-3xl font-bold text-gray-900">2 Comments</p>
+          <div className={`${isLoading && "md:w-[3200px]"}`}>
+            {isLoading ? (
+              <Loading />
+            ) : (
               <div>
-                <div className="flex gap-4 border-b py-8">
+                <div
+                  className="mb-10 sm:text-lg text-main"
+                  dangerouslySetInnerHTML={{ __html: blog.description }}
+                ></div>
+                <div>
+                  <p className="text-3xl font-bold text-gray-900">
+                    {blog.comments?.length || 0} Comments
+                  </p>{" "}
                   <div>
-                    <img src="/user.png" alt="" className="w-[65px]" />
+                    {blog.comments?.map((item) => {
+                      let date = new Date(item.createdAt)
+                        .toString()
+                        .slice(0, 16);
+                      return (
+                        <div
+                          className="flex gap-4 border-b py-8"
+                          key={item._id}
+                        >
+                          <div>
+                            <img src="/user.png" alt="" className="w-[65px]" />
+                          </div>
+                          <div>
+                            <div className="mb-4">
+                              <p className="text-lg font-semibold text-gray-900">
+                                {item.username}
+                              </p>
+                              <p className="text-sm text-gray-600">{date}</p>
+                            </div>
+                            <div>
+                              <p className="text-gray-700">{item.text}</p>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
-                  <div>
-                    <div className="mb-4">
-                      <p className="text-lg font-semibold text-gray-900">
-                        Chigusa Kisa
-                      </p>
-                      <p className="text-sm text-gray-600">July 21, 2020 </p>
-                    </div>
-                    <div>
-                      <p className="text-gray-700">
-                        I love the way the instructor goes about the course. So
-                        easy to follow, even though a little bit challenging as
-                        expected.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex gap-4 border-b py-8">
-                  <div>
-                    <img src="/user.png" alt="" className="w-[65px]" />
-                  </div>
-                  <div>
-                    <div className="mb-4">
-                      <p className="text-lg font-semibold text-gray-900">
-                        Chigusa Kisa
-                      </p>
-                      <p className="text-sm text-gray-600">July 21, 2020 </p>
-                    </div>
-                    <div>
-                      <p className="text-gray-700">
-                        I love the way the instructor goes about the course. So
-                        easy to follow, even though a little bit challenging as
-                        expected.
-                      </p>
-                    </div>
+                  <div className="mt-20">
+                    <p className="text-3xl font-bold text-gray-900 ">
+                      Leave a Reply
+                    </p>
+                    <form
+                      className="mt-10"
+                      onSubmit={!isCommentLoading && addComment}
+                    >
+                      <div className="w-full mb-3">
+                        <p className="text-main text-sm font-semibold mb-2">
+                          Your Name
+                        </p>
+                        <input
+                          type="text"
+                          required
+                          onChange={(e) => setUsername(e.target.value)}
+                          className="border shadow-[0_0_2px_1px_#1111_inset] rounded-lg w-full px-4 py-4 bg-transparent"
+                        />
+                      </div>
+                      <div className="mb-3">
+                        <p className="text-main text-sm font-semibold mb-2">
+                          Your comment
+                        </p>
+                        <textarea
+                          onChange={(e) => setText(e.target.value)}
+                          rows={6}
+                          required
+                          className="border shadow-[0_0_2px_1px_#1111_inset] rounded-lg w-full px-4 py-4"
+                        ></textarea>
+                      </div>
+                      <button className="px-16 rounded-lg shadow-md py-4 bg-[#F96106] text-white font-semibold mb-5">
+                        {isCommentLoading ? "Submitting..." : "Submit"}
+                      </button>
+                    </form>
                   </div>
                 </div>
               </div>
-              <div className="mt-20">
-                <p className="text-3xl font-bold text-gray-900 ">
-                  Leave a Reply
-                </p>
-                <form className="mt-10">
-                  <div className="w-full mb-3">
-                    <p className="text-main text-sm font-semibold mb-2">
-                      Your Name
-                    </p>
-                    <input
-                      type="text"
-                      className="border shadow-[0_0_2px_1px_#1111_inset] rounded-lg w-full px-4 py-4 bg-transparent"
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <p className="text-main text-sm font-semibold mb-2">
-                      Your comment
-                    </p>
-                    <textarea
-                      name=""
-                      id=""
-                      rows={6}
-                      className="border shadow-[0_0_2px_1px_#1111_inset] rounded-lg w-full px-4 py-4"
-                    ></textarea>
-                  </div>
-                  <button className="px-16 rounded-lg shadow-md py-4 bg-[#F96106] text-white font-semibold mb-5">
-                    Submit
-                  </button>
-                </form>
-              </div>
-            </div>
+            )}
           </div>
           <div className="md:w-[110rem] w-full text-main sticky top-28">
             <div className="">
-              <p className="text-[22px] font-semibold">Recent Posts</p>
-              <div>
-                {recentBlogs.map((item, index) => {
-                  return (
-                    <Link to={`/blogs/22`} key={index}>
-                      <div className="py-3 border-b">
-                        <p className="bg-[#DFF9F0] px-3 py-1 inline-block rounded-lg text-sm mb-3">
-                          {item.category}
-                        </p>
-                        <p className="text-lg font-semibold mb-3 hover:text-primary">
-                          {item.title}
-                        </p>
-                        <p className="text-sm text-gray-600">
-                          {item.createdAt}
-                        </p>
-                      </div>
-                    </Link>
-                  );
-                })}
-              </div>
+              <p className="text-[22px] font-semibold">Recent Blogs</p>
+              {isRecentLoading ? (
+                <p className="text-center text-gray-500 py-36 text-sm">
+                  Loading...
+                </p>
+              ) : (
+                <div>
+                  {recentBlogs.map((item, index) => {
+                    let date = new Date(item.createdAt).toString().slice(0, 16);
+                    return (
+                      <Link to={`/blogs/${item._id}`} key={index}>
+                        {" "}
+                        {/* Use dynamic blog id */}
+                        <div className="py-3 border-b">
+                          <p className="bg-[#DFF9F0] px-3 py-1 inline-block rounded-lg text-sm mb-3">
+                            {item.category}
+                          </p>
+                          <p className="text-lg font-semibold mb-3 hover:text-primary">
+                            {item.title}
+                          </p>
+                          <p className="text-sm text-gray-600">{date}</p>
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           </div>
         </div>
