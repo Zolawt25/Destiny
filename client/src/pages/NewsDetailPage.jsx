@@ -97,7 +97,7 @@ const NewsDetailPage = () => {
             ) : (
               <div>
                 <div
-                  className="mb-10 sm:text-lg text-main"
+                  className="mb-10 sm:text-lg text-main ql-editor"
                   dangerouslySetInnerHTML={{ __html: news.description }}
                 ></div>
                 <div>

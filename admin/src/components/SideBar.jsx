@@ -9,9 +9,9 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-const SideBar = () => {
+const SideBar = ({ isOpen }) => {
   const location = useLocation().pathname.split("/")[1];
-  const [isDisable, setIsDisable] = useState(false);
+  const [isDisable, setIsDisable] = useState(true);
   useEffect(() => {
     if (
       location === "login" ||
@@ -25,9 +25,11 @@ const SideBar = () => {
   }, [location]);
   return (
     <div
-      className={`h-screen sticky top-0 bg-[#121e2d] ${isDisable && "hidden"}`}
+      className={`h-screen lg:sticky fixed top-0 duration-300 ease-in-out ${
+        isOpen && "-left-[100vw]"
+      }  bg-[#121e2d] z-40 ${isDisable && "hidden"}`}
     >
-      <div className="w-[250px]">
+      <div className="w-[250px] pt-10 lg:pt-0">
         <div className="*:flex *:items-center px-4 py-3 *:gap-2 *:text-gray-100 w-full *:w-full hover:*:bg-[#ffffff17] *:py-2 *:px-2 *:text-sm *:rounded-md *:mb-2">
           <a href="/">
             <PieChart fontSize="small" /> Dashboard

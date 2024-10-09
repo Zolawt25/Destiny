@@ -99,7 +99,7 @@ const BlogDetailPage = () => {
             ) : (
               <div>
                 <div
-                  className="mb-10 sm:text-lg text-main"
+                  className="mb-10 sm:text-lg text-main ql-editor"
                   dangerouslySetInnerHTML={{ __html: blog.description }}
                 ></div>
                 <div>

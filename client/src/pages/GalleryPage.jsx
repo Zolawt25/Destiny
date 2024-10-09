@@ -4,14 +4,14 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
 const GalleryPage = () => {
   const imgs = [
-    "/gallery/gallery-1.jpg",
-    "/gallery/gallery-2.jpg",
-    "/gallery/gallery-3.jpg",
-    "/gallery/gallery-4.jpg",
-    "/gallery/gallery-8.jpg",
-    "/gallery/gallery-5.jpg",
-    "/gallery/gallery-7.jpg",
-    "/gallery/gallery-6.jpg",
+    "/pics/gallery-1.jpg",
+    "/pics/gallery-2.jpg",
+    "/pics/gallery-3.jpg",
+    "/pics/gallery-4.jpg",
+    "/pics/gallery-8.jpg",
+    "/pics/gallery-5.jpg",
+    "/pics/gallery-7.jpg",
+    "/pics/gallery-6.jpg",
   ];
   return (
     <div>

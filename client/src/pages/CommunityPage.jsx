@@ -35,6 +35,62 @@ const CommunityPage = () => {
             Marian shrine.
           </p>
         </div>
+        <div className="mt-20">
+          <h2 className="lg:text-6xl md:text-4xl sm:text-3xl text-main text-center mb-20 font-semibold">
+            Our Scholarship Students
+          </h2>
+          <div className="flex flex-col md:flex-row gap-7 mb-14">
+            <div className="flex-[2]">
+              <div className=" sticky top-24">
+                <p className="text-2xl font-semibold text-main mb-2 uppercase">
+                  Our Scholarship Students
+                </p>
+                <p className="text-sm">
+                  At our school, we are proud to stand out from the crowd. We
+                  believe that what sets us apart is our unwavering commitment
+                  to integrity, leadership, success, and learning – four key
+                  pillars that underpin everything we do. Integrity is at the
+                  heart of our school culture. We believe in doing the right
+                  thing, even when no one is watching. We foster a culture of
+                  honesty, transparency, and accountability, and hold ourselves
+                  to the highest ethical standards. By living our values and
+                  leading by example, we instill in our students a strong sense
+                  of integrity that will serve them well in all areas of their
+                  lives.
+                </p>
+              </div>
+            </div>
+            <div className="flex-[1.2]">
+              <img src="/scolar1.jpg" alt="" className="rounded-lg shadow-sm" />
+            </div>
+          </div>
+          <div className="flex flex-col md:flex-row gap-7 mb-14">
+            <div className="flex-[2]">
+              <div className=" sticky top-24">
+                <p className="text-2xl font-semibold text-main mb-2 uppercase">
+                  Our Scholarship Students
+                </p>
+                <p className="text-sm">
+                  At our school, we are proud to stand out from the crowd. We
+                  believe that what sets us apart is our unwavering commitment
+                  to integrity, leadership, success, and learning – four key
+                  pillars that underpin everything we do. Integrity is at the
+                  heart of our school culture. We believe in doing the right
+                  thing, even when no one is watching. We foster a culture of
+                  honesty, transparency, and accountability, and hold ourselves
+                  to the highest ethical standards. By living our values and
+                  leading by example, we instill in our students a strong sense
+                  of integrity that will serve them well in all areas of their
+                  lives.
+                </p>
+              </div>
+            </div>
+            <div className="flex-[1.2]">
+              <img src="/scolar2.jpg" alt="" className="rounded-lg shadow-sm" />
+            </div>
+          </div>
+        </div>
+
         <div>
           <FAQ />
         </div>

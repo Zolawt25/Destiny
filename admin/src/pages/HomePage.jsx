@@ -74,7 +74,7 @@ const HomePage = () => {
   };
   return (
     <div className="py-4">
-      <div className="grid grid-cols-3 gap-6 *:rounded-md *:shadow-sm">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 *:rounded-md *:shadow-sm">
         <div className="flex items-center bg-white py-5 gap-4 justify-center">
           <div className="bg-[#D1F3E0] text-[#49BD81] p-3 rounded-full">
             <RssFeedRounded sx={{ fontSize: "60px" }} />
@@ -112,7 +112,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <div className="h-[100vh] flex justify-center mt-8 bg-white rounded-md shadow py-2">
+      <div className="lg:h-[100vh] w-[100%] flex justify-center mt-8 bg-white rounded-md shadow py-2">
         <Pie options={options} data={data} />
       </div>
     </div>
